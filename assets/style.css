@@ -1,0 +1,42 @@
+/* style.css - Styling tambahan untuk JobFinder */
+
+/* Kartu lowongan efek hover */
+.job-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .job-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Tombol utama */
+  .btn-primary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition;
+  }
+  
+  /* Tombol sekunder */
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition;
+  }
+  
+  /* Input fokus */
+  input:focus, select:focus, textarea:focus {
+    @apply outline-none ring-2 ring-blue-500;
+  }
+  
+  /* Modal / alert animasi (kalau kamu pakai nanti) */
+  .fade-in {
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
