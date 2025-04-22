@@ -1,18 +1,21 @@
 <?php
 session_start();
 include 'config.php';
+
+// Pastikan cuma perusahaan yang bisa akses
 if (!isset($_SESSION['perusahaan_id'])) {
     header("Location: login_perusahaan.php");
     exit;
 }
 
-$perusahaan_id = $_SESSION['perusahaan_id'];
+$perusahaan_id = intval($_SESSION['perusahaan_id']);
 
+// Ambil profil perusahaan
 $query = "
-    SELECT * FROM perusahaan_profiles
-    WHERE user_id = '$perusahaan_id'
+    SELECT * 
+    FROM perusahaan_profiles
+    WHERE user_id = $perusahaan_id
 ";
-
 $result = mysqli_query($conn, $query);
 
 if ($result && mysqli_num_rows($result) > 0) {
@@ -23,7 +26,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -46,7 +48,9 @@ if ($result && mysqli_num_rows($result) > 0) {
 
   <!-- Hero Section -->
   <section class="bg-blue-500 text-white text-center py-12">
-    <h2 class="text-3xl font-bold mb-2">Halo, <?php echo htmlspecialchars($perusahaan['nama_perusahaan']); ?> 👋</h2>
+    <h2 class="text-3xl font-bold mb-2">
+      Halo, <?php echo htmlspecialchars($perusahaan['nama_perusahaan']); ?> 👋
+    </h2>
     <p class="text-lg">Kelola lowongan dan pantau pelamar dengan mudah di sini.</p>
   </section>
 
@@ -54,35 +58,45 @@ if ($result && mysqli_num_rows($result) > 0) {
   <section class="p-6 max-w-4xl mx-auto">
     <h3 class="text-xl font-semibold mb-4">Statistik Singkat</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <!-- Total Lowongan -->
       <div class="bg-white p-4 rounded shadow">
         <?php
-        $query = "SELECT COUNT(*) as total FROM lowongan WHERE user_id = '$perusahaan_id'";
-        $res = mysqli_query($conn, $query);
-        $data = mysqli_fetch_assoc($res);
+        $q1 = "SELECT COUNT(*) AS total 
+               FROM lowongan 
+               WHERE perusahaan_id = $perusahaan_id";
+        $r1 = mysqli_query($conn, $q1);
+        $d1 = mysqli_fetch_assoc($r1);
         ?>
         <p class="text-gray-600">Total Lowongan Diposting</p>
-        <p class="text-2xl font-bold text-blue-600"><?php echo $data['total']; ?></p>
+        <p class="text-2xl font-bold text-blue-600"><?php echo $d1['total']; ?></p>
       </div>
 
+      <!-- Total Pelamar -->
       <div class="bg-white p-4 rounded shadow">
         <?php
-        $query = "SELECT COUNT(*) as total FROM aplikasi a JOIN lowongan l ON a.lowongan_id = l.id WHERE l.user_id = '$perusahaan_id'";
-        $res = mysqli_query($conn, $query);
-        $data = mysqli_fetch_assoc($res);
+        $q2 = "SELECT COUNT(*) AS total 
+               FROM aplikasi a 
+               JOIN lowongan l ON a.lowongan_id = l.id 
+               WHERE l.perusahaan_id = $perusahaan_id";
+        $r2 = mysqli_query($conn, $q2);
+        $d2 = mysqli_fetch_assoc($r2);
         ?>
         <p class="text-gray-600">Total Pelamar Masuk</p>
-        <p class="text-2xl font-bold text-green-600"><?php echo $data['total']; ?></p>
+        <p class="text-2xl font-bold text-green-600"><?php echo $d2['total']; ?></p>
       </div>
     </div>
 
     <!-- Daftar Lowongan yang Diposting -->
     <h3 class="text-xl font-semibold mb-4">Lowongan yang Anda Posting</h3>
     <?php
-    $query_lowongan = "SELECT * FROM lowongan WHERE user_id = '$perusahaan_id'";
-    $result_lowongan = mysqli_query($conn, $query_lowongan);
+    $q3 = "SELECT * 
+           FROM lowongan 
+           WHERE perusahaan_id = $perusahaan_id
+           ORDER BY created_at DESC";
+    $r3 = mysqli_query($conn, $q3);
     ?>
 
-    <?php if (mysqli_num_rows($result_lowongan) > 0): ?>
+    <?php if (mysqli_num_rows($r3) > 0): ?>
       <div class="overflow-x-auto">
         <table class="min-w-full bg-white shadow rounded-lg overflow-hidden">
           <thead class="bg-blue-100">
@@ -94,7 +108,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             </tr>
           </thead>
           <tbody>
-            <?php while ($row = mysqli_fetch_assoc($result_lowongan)): ?>
+            <?php while ($row = mysqli_fetch_assoc($r3)): ?>
               <tr class="border-t">
                 <td class="px-4 py-2"><?php echo htmlspecialchars($row['judul']); ?></td>
                 <td class="px-4 py-2"><?php echo htmlspecialchars($row['kategori']); ?></td>
