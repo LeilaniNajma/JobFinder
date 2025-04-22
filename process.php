@@ -23,11 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if ($id > 0) {
-    // UPDATE lowongan perusahaan
-    $query = "UPDATE lowongan_perusahaan SET judul='$judul', kategori='$kategori', lokasi='$lokasi', deskripsi='$deskripsi' WHERE id=$id AND perusahaan_id=$perusahaan_id";
+    // UPDATE lowongan perusahaan (tambahkan kondisi perusahaan_id untuk keamanan)
+    $query = "UPDATE lowongan 
+              SET judul='$judul', kategori='$kategori', lokasi='$lokasi', deskripsi='$deskripsi' 
+              WHERE id=$id AND perusahaan_id=$perusahaan_id";
   } else {
-    // INSERT baru ke lowongan_perusahaan
-    $query = "INSERT INTO lowongan_perusahaan (judul, kategori, lokasi, deskripsi, perusahaan_id) 
+    // INSERT baru ke lowongan dan simpan perusahaan_id
+    $query = "INSERT INTO lowongan (judul, kategori, lokasi, deskripsi, perusahaan_id) 
               VALUES ('$judul', '$kategori', '$lokasi', '$deskripsi', $perusahaan_id)";
   }
 
