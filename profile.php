@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           ($user_id, '$hp', '$negara', '$provinsi', '$kota', '$alamat', '$kelamin', '$tgl_lahir', '$summary')";
   mysqli_query($conn, $sql);
 
-  // selesai lengkapi, arahkan ke dashboard
+  // selesai lengkapi, arahkan ke dashboarddddddd
   header("Location: dashboard.php");
   exit;
 }
