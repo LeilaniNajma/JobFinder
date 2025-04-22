@@ -30,8 +30,6 @@ $isLoggedIn = isset($_SESSION['user_id']); // Cek jika pengguna sudah login
         <a href="logout.php" class="text-red-500">Logout</a>
       <?php else: ?>
         <!-- Jika belum login -->
-        <a href="rekomendasi.php" class="text-gray-700 hover:text-blue-600">Rekomendasi</a>
-        <a href="status_lamaran.php" class="text-gray-700 hover:text-blue-600">Status Lamaran</a>
         <a href="profile_perusahaan.php" class="text-gray-700 hover:text-blue-600">Untuk Perusahaan</a>
         <a href="login.php" class="text-gray-700 hover:text-blue-600">Login</a>
         <a href="daftar.php" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Daftar</a>

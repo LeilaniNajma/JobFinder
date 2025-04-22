@@ -98,7 +98,7 @@ $result = mysqli_stmt_get_result($stmt);
             <div class="lowongan-card">
                 <div class="judul"><?= htmlspecialchars($row['judul']) ?></div>
                 <div class="lokasi"><?= htmlspecialchars($row['lokasi']) ?></div>
-                <a class="lihat-detail" href="detail_lowongan.php?id=<?= $row['id'] ?>">Lihat Detail</a>
+                <a class="lihat-detail" href="detail.php?id=<?= $row['id'] ?>">Lihat Detail</a>
             </div>
         <?php endwhile; ?>
     <?php else: ?>

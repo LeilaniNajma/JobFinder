@@ -40,7 +40,7 @@ $user = mysqli_fetch_assoc($result);
   <!-- Hero -->
   <section class="bg-blue-500 text-white text-center py-12">
     <h2 class="text-3xl font-bold mb-4">Selamat datang, <?php echo htmlspecialchars($user['nama']); ?></h2>
-    <p class="text-lg">Kelola aplikasi dan lowongan pekerjaan Anda di sini!</p>
+    <p class="text-lg">Temukan pekerjaan idamanmu</p>
   </section>
 
   <!-- Dashboard Content -->
