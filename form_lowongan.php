@@ -1,9 +1,8 @@
 <?php
 include 'config.php';
 
-// Cek apakah sedang dalam mode edit
 $edit = false;
-$judul = $lokasi = $kategori = $deskripsi = "";
+$judul = $lokasi = $kategori = $subkategori = $deskripsi = "";
 
 if (isset($_GET['id'])) {
   $edit = true;
@@ -13,6 +12,7 @@ if (isset($_GET['id'])) {
   $judul = $data['judul'];
   $lokasi = $data['lokasi'];
   $kategori = $data['kategori'];
+  $subkategori = $data['subkategori'];
   $deskripsi = $data['deskripsi'];
 }
 ?>
@@ -24,8 +24,6 @@ if (isset($_GET['id'])) {
   <title><?= $edit ? "Edit" : "Tambah" ?> Lowongan</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/style.css">
-  <script defer src="assets/script.js"></script>
-
 </head>
 <body class="bg-gray-100 text-gray-800">
   <div class="max-w-2xl mx-auto p-6 bg-white shadow-md rounded mt-10">
@@ -44,11 +42,16 @@ if (isset($_GET['id'])) {
       <input type="text" name="lokasi" value="<?= $lokasi ?>" required class="w-full p-2 border rounded mb-4">
 
       <label class="block mb-2">Kategori</label>
-      <select name="kategori" class="w-full p-2 border rounded mb-4" required>
+      <select name="kategori" id="kategori" class="w-full p-2 border rounded mb-4" required>
         <option value="">Pilih Kategori</option>
         <option value="IT" <?= $kategori == "IT" ? "selected" : "" ?>>IT</option>
         <option value="Finance" <?= $kategori == "Finance" ? "selected" : "" ?>>Finance</option>
         <option value="Marketing" <?= $kategori == "Marketing" ? "selected" : "" ?>>Marketing</option>
+      </select>
+
+      <label class="block mb-2">Sub-Kategori</label>
+      <select name="subkategori" id="subkategori" class="w-full p-2 border rounded mb-4" required>
+        <option value="">Pilih Sub-Kategori</option>
       </select>
 
       <label class="block mb-2">Deskripsi</label>
@@ -59,5 +62,36 @@ if (isset($_GET['id'])) {
       </button>
     </form>
   </div>
+
+  <script>
+    const kategoriSelect = document.getElementById("kategori");
+    const subkategoriSelect = document.getElementById("subkategori");
+    const selectedSub = "<?= $subkategori ?>";
+
+    const subkategoriMap = {
+      IT: ["Software Development", "IT Support", "Data & AI"],
+      Finance: ["Accounting", "Financial Planning & Analysis"],
+      Marketing: ["Digital Marketing", "Creative"]
+    };
+
+    function updateSubkategori() {
+      const selectedKategori = kategoriSelect.value;
+      subkategoriSelect.innerHTML = "<option value=''>Pilih Sub-Kategori</option>";
+
+      if (selectedKategori && subkategoriMap[selectedKategori]) {
+        subkategoriMap[selectedKategori].forEach(sub => {
+          const option = document.createElement("option");
+          option.value = sub;
+          option.textContent = sub;
+          if (sub === selectedSub) option.selected = true;
+          subkategoriSelect.appendChild(option);
+        });
+      }
+    }
+
+    // Trigger saat halaman pertama kali dimuat
+    document.addEventListener("DOMContentLoaded", updateSubkategori);
+    kategoriSelect.addEventListener("change", updateSubkategori);
+  </script>
 </body>
 </html>
