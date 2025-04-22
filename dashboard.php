@@ -30,7 +30,8 @@ $user = mysqli_fetch_assoc($result);
     <h1 class="text-2xl font-bold text-blue-600">JobFinder</h1>
     <nav class="space-x-4">
       <a href="rekomendasi.php" class="text-gray-700 hover:text-blue-600">Rekomendasi</a>
-      <a href="dashboard.php#status" class="text-gray-700 hover:text-blue-600">Status Lamaran</a>
+      <a href="##" class="text-gray-700 hover:text-blue-600">Tambah lamaran</a>
+      <a href="##" class="text-gray-700 hover:text-blue-600">Status Lamaran</a>
       <a href="profile.php" class="text-gray-700 hover:text-blue-600">Profile</a>
       <!-- Tombol Logout dengan konfirmasi -->
       <a href="#" onclick="confirmLogout()" class="text-red-500 hover:underline">Logout</a>
