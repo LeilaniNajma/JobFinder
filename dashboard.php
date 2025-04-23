@@ -23,7 +23,7 @@ $user = mysqli_fetch_assoc($result);
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/style.css">
 </head>
-<body class="bg-gray-100">
+<body class="bg-blue-950 text-gray-900">
 
   <!-- Navbar -->
   <header class="bg-white shadow-md p-4 flex justify-between items-center">
@@ -47,7 +47,7 @@ $user = mysqli_fetch_assoc($result);
   <!-- Dashboard Content -->
   <section class="p-6" id="status">
     <div class="max-w-4xl mx-auto">
-      <h3 class="text-xl font-semibold mb-4">Lowongan yang Anda Lamar</h3>
+      <h3 class="text-xl font-semibold mb-4 text-white">Lowongan yang Anda Lamar</h3>
       <div class="bg-white p-4 rounded shadow-md">
         <?php
         // Ambil data lowongan yang dilamar oleh user

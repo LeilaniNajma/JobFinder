@@ -33,7 +33,7 @@ if ($result && mysqli_num_rows($result) > 0) {
   <title>Dashboard Perusahaan - JobFinder</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-blue-950 text-gray-900">
 
   <!-- Navbar -->
   <header class="bg-white shadow-md p-4 flex justify-between items-center">
@@ -56,7 +56,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
   <!-- Konten utama -->
   <section class="p-6 max-w-4xl mx-auto">
-    <h3 class="text-xl font-semibold mb-4">Statistik Singkat</h3>
+  <h3 class="text-xl font-semibold mb-4 text-white">Statistik Singkat</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
       <!-- Total Lowongan -->
       <div class="bg-white p-4 rounded shadow">
@@ -87,7 +87,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     </div>
 
     <!-- Daftar Lowongan yang Diposting -->
-    <h3 class="text-xl font-semibold mb-4">Lowongan yang Anda Posting</h3>
+    <h3 class="text-xl font-semibold mb-4 text-white">Lowongan yang Anda Posting</h3>
     <?php
     $q3 = "SELECT * 
            FROM lowongan 
