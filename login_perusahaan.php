@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <div class="mt-4 text-center">
-            <p class="text-center mt-4 text-sm">Belum punya akun? <a href="registrasi_perusahaan.php" class="text-blue-600 hover:underline">Daftar Sekarang</a></p>
+            <p class="text-center mt-4 text-sm">Belum punya akun? <a href="profile_perusahaan.php" class="text-blue-600 hover:underline">Daftar Sekarang</a></p>
         </div>
     </div>
 </body>
