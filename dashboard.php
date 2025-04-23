@@ -30,7 +30,6 @@ $user = mysqli_fetch_assoc($result);
     <h1 class="text-2xl font-bold text-blue-600">JobFinder</h1>
     <nav class="space-x-4">
       <a href="rekomendasi.php" class="text-gray-700 hover:text-blue-600">Rekomendasi</a>
-      <a href="##" class="text-gray-700 hover:text-blue-600">Tambah lamaran</a>
       <a href="##" class="text-gray-700 hover:text-blue-600">Status Lamaran</a>
       <a href="profile.php" class="text-gray-700 hover:text-blue-600">Profile</a>
       <!-- Tombol Logout dengan konfirmasi -->
@@ -46,40 +45,17 @@ $user = mysqli_fetch_assoc($result);
 
   <!-- Dashboard Content -->
   <section class="p-6" id="status">
-    <div class="max-w-4xl mx-auto">
-      <h3 class="text-xl font-semibold mb-4 text-white">Lowongan yang Anda Lamar</h3>
-      <div class="bg-white p-4 rounded shadow-md">
-        <?php
-        // Ambil data lowongan yang dilamar oleh user
-        $query = "SELECT l.judul, l.lokasi, a.status FROM lowongan l JOIN aplikasi a ON l.id = a.lowongan_id WHERE a.user_id = '$user_id' ORDER BY a.tanggal_aplikasi DESC";
-        $result = mysqli_query($conn, $query);
-        
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $status = $row['status'];
-                $warna = 'bg-gray-300 text-gray-800';
-
-                if ($status == 'menunggu') {
-                    $warna = 'bg-yellow-200 text-yellow-800';
-                } elseif ($status == 'diterima') {
-                    $warna = 'bg-green-200 text-green-800';
-                } elseif ($status == 'ditolak') {
-                    $warna = 'bg-red-200 text-red-800';
-                }
-
-                echo "<div class='mb-4 border-b pb-4'>
-                        <h4 class='font-bold'>" . htmlspecialchars($row['judul']) . "</h4>
-                        <p class='text-gray-600'>" . htmlspecialchars($row['lokasi']) . "</p>
-                        <p>Status: <span class='px-2 py-1 rounded text-sm font-semibold $warna'>" . ucfirst($status) . "</span></p>
-                      </div>";
-            }
-        } else {
-            echo "<p>Tidak ada lowongan yang Anda lamar.</p>";
-        }
-        ?>
-      </div>
+  <div class="max-w-4xl mx-auto">
+    <h3 class="text-xl font-semibold mb-4 text-white">Lowongan yang Anda Lamar</h3>
+    <div class="bg-white p-4 rounded shadow-md">
+      <?php
+        // Bagian data lamaran di-nonaktifkan
+        echo "<p>Tidak ada lowongan yang Anda lamar.</p>";
+      ?>
     </div>
-  </section>
+  </div>
+</section>
+ 
 
   <!-- Script Konfirmasi Logout -->
   <script>

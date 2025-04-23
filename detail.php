@@ -43,19 +43,21 @@ $kembaliKe = $from === 'rekomendasi' ? 'rekomendasi.php' : 'index.php';
       <p><?php echo nl2br(htmlspecialchars($data['deskripsi'])); ?></p>
     </div>
 
-    <!-- Tombol aksi -->
+   <!-- Tombol aksi -->
     <div class="flex flex-wrap items-center space-x-4 mt-6">
       <?php
-      // Jika perusahaan login DAN pemilik lowongan
-      if (isset($_SESSION['perusahaan_id']) && $_SESSION['perusahaan_id'] == $data['user_id']) {
+      // Tambahan pengecekan aman
+      $isPerusahaanLogin = isset($_SESSION['perusahaan_id']) && isset($data['user_id']) && $_SESSION['perusahaan_id'] == $data['user_id'];
       ?>
+
+      <?php if ($isPerusahaanLogin): ?>
         <a href="form.php?id=<?php echo $data['id']; ?>" class="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500">Edit</a>
         <a href="delete.php?id=<?php echo $data['id']; ?>" onclick="return confirm('Yakin ingin menghapus lowongan ini?')" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Hapus</a>
-      <?php
-      } else {
-      ?>
-        <a href="lamar.php?id=<?php echo $data['id']; ?>" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lamar</a>
-      <?php } ?>
+      <?php else: ?>
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <a href="lamar.php?id=<?php echo $data['id']; ?>" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lamar</a>
+        <?php endif; ?>
+      <?php endif; ?>
       <a href="<?php echo $kembaliKe; ?>" class="ml-auto text-blue-600 hover:underline">← Kembali</a>
     </div>
   </div>
