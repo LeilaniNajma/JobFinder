@@ -21,117 +21,31 @@ if (!empty($subkategori)) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Rekomendasi Pekerjaan</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f6fa;
-            padding: 40px;
-        }
-
-        .card {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            width: 600px;
-            margin: 0 auto 30px;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-
-        .form-group {
-            display: flex;
-            gap: 20px;
-        }
-
-        .form-group > div {
-            flex: 1;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .results {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .lowongan-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.05);
-        }
-
-        .judul {
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-
-        .lokasi {
-            color: #333;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .lihat-detail {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .lihat-detail:hover {
-            text-decoration: underline;
-        }
-
-        .kosong {
-            text-align: center;
-            color: gray;
-            margin-top: 20px;
-            font-size: 18px;
-        }
-    </style>
+    <title>Rekomendasi Pekerjaan - JobFinder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100">
 
-<div class="card">
-    <h2>Rekomendasi Pekerjaan</h2>
-    <form method="GET">
-        <div class="form-group">
+<!-- Header -->
+<header class="bg-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-blue-600">JobFinder</h1>
+    <nav class="space-x-4">
+        <a href="rekomendasi.php" class="text-blue-600 font-bold">Rekomendasi</a>
+        <a href="##" class="text-gray-700 hover:text-blue-600">Tambah lamaran</a>
+        <a href="status_lamaran.php" class="text-gray-700 hover:text-blue-600">Status Lamaran</a>
+        <a href="profile.php" class="text-gray-700 hover:text-blue-600">Profile</a>
+        <a href="#" onclick="confirmLogout()" class="text-red-500 hover:underline">Logout</a>
+    </nav>
+</header>
+
+<!-- Konten utama (form dan hasil rekomendasi) -->
+<div class="max-w-2xl mx-auto mt-10 bg-white p-8 rounded-lg shadow">
+    <h2 class="text-2xl font-bold text-center text-blue-600 mb-6">Rekomendasi Pekerjaan</h2>
+    <form method="GET" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-                <label for="minat">Minat Utama:</label>
-                <select id="minat" name="minat" required>
+                <label for="minat" class="block font-medium mb-1">Minat Utama:</label>
+                <select id="minat" name="minat" required class="w-full border rounded-md p-2">
                     <option value="">-- Pilih Minat --</option>
                     <option value="IT" <?= $minat == 'IT' ? 'selected' : '' ?>>IT</option>
                     <option value="Finance" <?= $minat == 'Finance' ? 'selected' : '' ?>>Finance</option>
@@ -139,33 +53,33 @@ if (!empty($subkategori)) {
                 </select>
             </div>
             <div>
-                <label for="subkategori">Sub-Kategori:</label>
-                <select id="subkategori" name="subkategori" required>
+                <label for="subkategori" class="block font-medium mb-1">Sub-Kategori:</label>
+                <select id="subkategori" name="subkategori" required class="w-full border rounded-md p-2">
                     <option value="">-- Pilih Sub-Kategori --</option>
                 </select>
             </div>
         </div>
-        <button type="submit">Cari Lowongan</button>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">Cari Lowongan</button>
     </form>
 </div>
 
 <!-- Hasil Rekomendasi -->
-<?php if ($subkategori): ?>
-    <div class="results">
-        <div class="subinfo" style="text-align:center; margin-bottom:20px;">
+<?php if (!empty($subkategori)): ?>
+    <div class="max-w-2xl mx-auto mt-8">
+        <div class="text-center text-gray-700 mb-4">
             Menampilkan lowongan untuk sub-kategori: <strong><?= htmlspecialchars($subkategori) ?></strong>
         </div>
 
         <?php if (count($lowongan) > 0): ?>
             <?php foreach ($lowongan as $row): ?>
-                <div class="lowongan-card">
-                    <div class="judul"><?= htmlspecialchars($row['judul']) ?></div>
-                    <div class="lokasi"><?= htmlspecialchars($row['lokasi']) ?></div>
+                <div class="bg-white p-5 rounded-lg shadow mb-4">
+                    <div class="text-lg font-semibold"><?= htmlspecialchars($row['judul']) ?></div>
+                    <div class="text-sm text-gray-600 mb-2"><?= htmlspecialchars($row['lokasi']) ?></div>
                     <a href="detail.php?id=<?php echo $row['id']; ?>&from=rekomendasi" class="text-blue-500 underline">Lihat Detail</a>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <div class="kosong">Belum ada lowongan untuk sub-kategori ini 😢</div>
+            <div class="text-center text-gray-500 text-lg mt-6">Belum ada lowongan untuk sub-kategori ini 😢</div>
         <?php endif; ?>
     </div>
 <?php endif; ?>
@@ -189,16 +103,19 @@ if (!empty($subkategori)) {
             const option = document.createElement('option');
             option.value = sub;
             option.textContent = sub;
-            if (sub === "<?= $subkategori ?>") option.selected = true;
+            if (sub === <?= json_encode($subkategori) ?>) option.selected = true;
             subKategoriSelect.appendChild(option);
         });
     }
 
     minatSelect.addEventListener('change', updateSubkategori);
     document.addEventListener('DOMContentLoaded', updateSubkategori);
-</script>
 
+    function confirmLogout() {
+        if (confirm("Yakin ingin logout?")) {
+            window.location.href = "logout.php";
+        }
+    }
+</script>
 </body>
 </html>
-
-
