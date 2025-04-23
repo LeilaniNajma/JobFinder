@@ -16,7 +16,7 @@ $isLoggedIn = isset($_SESSION['user_id']); // Cek jika pengguna sudah login
   <script defer src="assets/script.js"></script>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-blue-950 text-gray-900">
   <!-- Navbar -->
   <header class="bg-white shadow-md p-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold text-blue-600">JobFinder</h1>
