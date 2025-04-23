@@ -17,6 +17,10 @@ if (!$result || mysqli_num_rows($result) === 0) {
 }
 
 $data = mysqli_fetch_assoc($result);
+
+// Cek asal halaman
+$from = isset($_GET['from']) ? $_GET['from'] : 'index';
+$kembaliKe = $from === 'rekomendasi' ? 'rekomendasi.php' : 'index.php';
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +56,7 @@ $data = mysqli_fetch_assoc($result);
       ?>
         <a href="lamar.php?id=<?php echo $data['id']; ?>" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Lamar</a>
       <?php } ?>
-      <a href="index.php" class="ml-auto text-blue-600 hover:underline">← Kembali</a>
+      <a href="<?php echo $kembaliKe; ?>" class="ml-auto text-blue-600 hover:underline">← Kembali</a>
     </div>
   </div>
 </body>
