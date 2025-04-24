@@ -10,10 +10,10 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($conn, $query);
 
     if ($result) {
-        echo "<script>alert('Lowongan berhasil dihapus.'); window.location.href='index.php';</script>";
+        echo "<script>alert('Lowongan berhasil dihapus.'); window.location.href='dashboard_perusahaan.php';</script>";
     } else {
-        echo "<script>alert('Gagal menghapus lowongan.'); window.location.href='index.php';</script>";
+        echo "<script>alert('Gagal menghapus lowongan.'); window.location.href='dashboard_perusahaan.php';</script>";
     }
 } else {
-    echo "<script>alert('ID tidak ditemukan.'); window.location.href='index.php';</script>";
+    echo "<script>alert('ID tidak ditemukan.'); window.location.href='dashboard_perusahaan.php';</script>";
 }?>

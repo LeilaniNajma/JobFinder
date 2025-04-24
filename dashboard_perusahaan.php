@@ -56,7 +56,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
   <!-- Konten utama -->
   <section class="p-6 max-w-4xl mx-auto">
-  <h3 class="text-xl font-semibold mb-4 text-white">Statistik Singkat</h3>
+    <h3 class="text-xl font-semibold mb-4 text-white">Statistik Singkat</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
       <!-- Total Lowongan -->
       <div class="bg-white p-4 rounded shadow">
@@ -115,7 +115,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <td class="px-4 py-2"><?php echo htmlspecialchars($row['lokasi']); ?></td>
                 <td class="px-4 py-2 space-x-2">
                   <a href="form_lowongan.php?id=<?php echo $row['id']; ?>" class="text-blue-500 hover:underline">Edit</a>
-                  <a href="hapus_lowongan.php?id=<?php echo $row['id']; ?>" class="text-red-500 hover:underline" onclick="return confirm('Yakin ingin menghapus lowongan ini?')">Hapus</a>
+                  <a href="delete.php?id=<?php echo $row['id']; ?>" class="text-red-500 hover:underline" onclick="return confirm('Yakin ingin menghapus lowongan ini?')">Hapus</a>
                 </td>
               </tr>
             <?php endwhile; ?>
@@ -123,7 +123,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         </table>
       </div>
     <?php else: ?>
-      <p class="text-gray-600">Belum ada lowongan yang Anda posting.</p>
+      <p class="text-white-600">Belum ada lowongan yang Anda posting.</p>
     <?php endif; ?>
   </section>
 
