@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Simpan Perubahan</button>
     </form>
     <div class="mt-4 text-center">
-      <a href="dashboard_perusahaan.php" class="text-blue-600 hover:underline">Kembali ke Dashboard</a>
+      <a href="dashboard_perusahaan.php" class="text-blue-600 hover:underline">Kembali ke Dashboard Perusahaan</a>
     </div>
   </div>
 </body>
