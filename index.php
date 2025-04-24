@@ -39,7 +39,7 @@ $isLoggedIn = isset($_SESSION['user_id']); // Cek jika pengguna sudah login
 
   <!-- Hero -->
   <section class="bg-blue-500 text-white text-center py-12">
-    <h2 class="text-3xl font-bold mb-4">Cari Kerja #makin mudah</h2>
+    <h2 class="text-3xl font-bold mb-4">Karier impianmu, mulai disini!</h2>
     <p class="text-lg">Dapatkan Informasi Lowongan yang cocok dengan profil Anda</p>
   </section>
 
